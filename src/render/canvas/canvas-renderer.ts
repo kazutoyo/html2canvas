@@ -245,16 +245,32 @@ export class CanvasRenderer {
             this.path(path);
             this.ctx.save();
             this.ctx.clip();
+            var newWidth = 30;
+            var newHeight = 30;
+            var newX = box.left;
+            var newY = box.top;
+
+            // object-fit hack
+            if (image.width/box.width > image.height/box.height) {
+                newWidth = box.width;
+                newHeight = image.height * (box.width / image.width);
+                newY = box.top + (box.height - newHeight) / 2;
+            } else {
+                newWidth = image.width * (box.height / image.height);
+                newHeight = box.height;
+                newX = box.left + (box.width - newWidth) / 2;
+            }
+
             this.ctx.drawImage(
                 image,
                 0,
                 0,
                 container.intrinsicWidth,
                 container.intrinsicHeight,
-                box.left,
-                box.top,
-                box.width,
-                box.height
+                newX,
+                newY,
+                newWidth,
+                newHeight
             );
             this.ctx.restore();
         }
