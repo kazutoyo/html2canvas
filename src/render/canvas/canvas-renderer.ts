@@ -251,7 +251,7 @@ export class CanvasRenderer {
             var newY = box.top;
 
             // object-fit hack
-            if (image.width/box.width > image.height/box.height) {
+            if (image.width / box.width > image.height / box.height) {
                 newWidth = box.width;
                 newHeight = image.height * (box.width / image.width);
                 newY = box.top + (box.height - newHeight) / 2;
