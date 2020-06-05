@@ -252,13 +252,13 @@ export class CanvasRenderer {
 
             // object-fit hack
             if (image.width / box.width > image.height / box.height) {
-                newWidth = box.width;
-                newHeight = image.height * (box.width / image.width);
-                newY = box.top + (box.height - newHeight) / 2;
-            } else {
                 newWidth = image.width * (box.height / image.height);
                 newHeight = box.height;
                 newX = box.left + (box.width - newWidth) / 2;
+            } else {
+                newWidth = box.width;
+                newHeight = image.height * (box.width / image.width);
+                newY = box.top + (box.height - newHeight) / 2;
             }
 
             this.ctx.drawImage(
